@@ -59,12 +59,12 @@ def busestrams_get(other_params=None):
     other_params['apikey'] = API_KEY
     json_print(make_request(end_link, other_params))
 
-    def info_buses():
+def info_buses():
     """ Returns a data frame obtained by the api request to 'https://api.um.warszawa.pl/api/action/dbstore_get'.
-        The dataframe includes the BusId, Team and Coordinates. Notice that the key column of the dataframe repeats
-        itself after 8 rows. Ideally the values of the column key will be the headers. So we will end up with a
-        dataframe of size (7552,8). In that way it would be easier to access the info when matching the timetables
-        and the real arrivals hours. Feel free to modify anything !!
+    The dataframe includes the BusId, Team and Coordinates. Notice that the key column of the dataframe repeats
+    itself after 8 rows. Ideally the values of the column key will be the headers. So we will end up with a
+    dataframe of size (7552,8). In that way it would be easier to access the info when matching the timetables
+    and the real arrivals hours. Feel free to modify anything !!
     """
     end_link='dbstore_get'
     resource_id='?id=ab75c33d-3a26-4342-b36a-6e5fef0a3ac3&&apikey='
@@ -74,12 +74,12 @@ def busestrams_get(other_params=None):
     df=json_normalize(data['result'],record_path='values',errors='ignore')
     return df
 
-    def lines(bus_stopid):
+def lines(bus_stopid):
     """ Returns all lines available at a certain bus stop. Feel free to modify anything that can be
         improved :)
-     Args:
+    Args:
         bus_stopid (int): Identifier of the bus stop.
-     Returns:
+    Returns:
         lines3 (DF): The object returned is a dataframe. Notice that in the api documentation
         it is stated that for each bus_stop_id the  parameter busstopNr can get 2 values either
         0 or 1. The resulting dataframe appends the values for both busstopNr.
